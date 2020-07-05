@@ -4,18 +4,19 @@ import Signin from 'components/signin/Signin';
 import Dashboard from 'components/dashboard/Dashboard';
 import Order from 'components/order/Order';
 import PrivateRoute from 'components/auth/PrivateRoute';
+import SigninRoute from 'components/auth/SigninRoute';
 
 export default function Routing() {
     return (
         <Router>
             <Switch>
-                <Route exact path="/">
+                <SigninRoute exact path="/">
                     <Signin />
-                </Route>
+                </SigninRoute>
                 <PrivateRoute path="/dashboard">
                     <Dashboard />
                 </PrivateRoute>
-                <PrivateRoute path="/:id" children={<Order />} />
+                <PrivateRoute path="/dashboard/:id" children={<Order />} />
             </Switch>
         </Router>
     );

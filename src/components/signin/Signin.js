@@ -21,6 +21,7 @@ import {
     useHistory,
     useLocation,
 } from 'react-router-dom';
+import styles from './Signin.module.css';
 
 const SignIn = () => {
     let history = useHistory();
@@ -98,11 +99,11 @@ const SignIn = () => {
 
     return (
         <>
-            <Container className="mt-4">
-                <Row>
+            <Container className="mt-4 ">
+                <Row className="align-items-center">
                     <Col className="col-md-4 col-sm-12 mx-auto">
                         <h1 className="my-5 m-auto text-center mb-4">
-                            Sign in form
+                            Sign in
                         </h1>
 
                         {FormFunc()}

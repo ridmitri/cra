@@ -72,6 +72,6 @@ describe('Signin page', () => {
         cy.get('.action-password').type('typo' + Cypress.env('password') + '{enter}');
         cy.get('.error-message').should('be.visible');
         cy.get('.action-email').type('new email');
-        cy.get('.error-message').should('not.be.visible');
+        cy.get('.error-message').should('not.exist');
     });
 });

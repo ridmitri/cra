@@ -13,6 +13,7 @@ const USER = {
     email: 'admin@mailinator.com',
     password: '123456',
 };
+
 const api = {
     isAuthenticated: false,
     authenticate({ email, password }) {
