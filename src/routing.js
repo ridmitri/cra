@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Signin from 'components/signin/Signin';
+import Dashboard from 'components/dashboard/Dashboard';
 
 export default function Routing() {
     return (
@@ -18,7 +20,7 @@ export default function Routing() {
 
                 <Switch>
                     <Route exact path="/">
-                        <Home />
+                        <Signin />
                     </Route>
                     <Route path="/dashboard">
                         <Dashboard />
@@ -26,24 +28,5 @@ export default function Routing() {
                 </Switch>
             </div>
         </Router>
-    );
-}
-
-// You can think of these components as "pages"
-// in your app.
-
-function Home() {
-    return (
-        <div>
-            <h2>Home</h2>
-        </div>
-    );
-}
-
-function Dashboard() {
-    return (
-        <div>
-            <h2>Dashboard</h2>
-        </div>
     );
 }
