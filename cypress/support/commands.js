@@ -10,7 +10,14 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
+Cypress.Commands.add('login', (email, password) => {
+    window.localStorage.setItem('email', email);
+    window.localStorage.setItem('password', password);
+});
+Cypress.Commands.add('logout', () => {
+    window.localStorage.remove('email');
+    window.localStorage.remove('password');
+});
 //
 //
 // -- This is a child command --

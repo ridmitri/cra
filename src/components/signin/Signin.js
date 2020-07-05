@@ -9,8 +9,9 @@ import {
     Card,
     Col,
     Row,
+    Alert,
 } from 'reactstrap';
-import fakeAuth from 'components/auth/api';
+import api from 'api';
 import {
     BrowserRouter as Router,
     Switch,
@@ -32,24 +33,36 @@ const SignIn = () => {
         password: '',
     });
 
+    const [error, setError] = useState('');
+
     const { email, password } = values;
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setValues({ ...values });
-        fakeAuth.authenticate(() => {
-            history.replace(from);
-        });
+        api.authenticate(values)
+            .then(() => {
+                history.replace(from);
+            })
+            .catch((error) => {
+                setError(error);
+            });
     };
 
     const handleChange = (name) => (e) => {
         setValues({ ...values, [name]: e.target.value });
+        setError('');
     };
 
     const FormFunc = () => {
         return (
             <Card body className="mt-4">
                 <Form onSubmit={handleSubmit}>
+                    {error && (
+                        <Alert color="warning" className="error-message">
+                            {error}
+                        </Alert>
+                    )}
                     <FormGroup>
                         <Input
                             value={email}

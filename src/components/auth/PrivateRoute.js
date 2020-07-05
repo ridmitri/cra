@@ -1,21 +1,13 @@
 import React from 'react';
-import fakeAuth from './api';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect,
-    useHistory,
-    useLocation,
-} from 'react-router-dom';
+import api from 'api';
+import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({ children, ...rest }) => {
     return (
         <Route
             {...rest}
             render={({ location }) =>
-                fakeAuth.isAuthenticated ? (
+                api.isAuthenticated ? (
                     children
                 ) : (
                     <Redirect
