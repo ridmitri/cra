@@ -1,0 +1,7 @@
+{
+    "extends": "../jsconfig",
+    "compilerOptions": {
+        "baseUrl": "../node_modules",
+        "target": "es5"
+    }
+}
