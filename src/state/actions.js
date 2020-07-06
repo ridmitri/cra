@@ -8,11 +8,22 @@ export const signin = (orders = []) => {
   }
 };
 
+export const update = (order) => {
+  return {
+    type: UPDATE,
+    order,
+  }
+};
+
+export const createOrder = (order) => {
+  return {
+    type: CREATE,
+    order,
+  }
+};
 
 export const loadingDone = () => {
   return {
     type: LOADED,
   }
 };
-
-

@@ -13,15 +13,4 @@ const useStore = () => {
     return {dispatch, getState: () => state};
 };
 
-
-export const MockState = (state) => children => {
-  const dispatch = () => {};
-  return (
-      <StoreContext.Provider value={{state, dispatch}}>
-          {children}
-      </StoreContext.Provider>
-  )
-}
-
-
 export default useStore;

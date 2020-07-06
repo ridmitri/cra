@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Signin from './Signin';
-import { MockState } from 'state/context';
+import { withState } from 'setupTests';
 import api from 'api';
 
 jest.mock('api', () => ({
@@ -10,7 +10,7 @@ jest.mock('api', () => ({
 
 describe('Signin page', () => {
     it('renders Sign in form after loading is done', () => {
-        const { getByText } = render(MockState({ isLoaded: true })(<Signin />));
+        const { getByText } = render(withState({ isLoaded: true })(<Signin />));
         const header = getByText(/Sign in/i);
         expect(header).toBeInTheDocument();
     });

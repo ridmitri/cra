@@ -20,7 +20,7 @@ export const reducer = produce((draft = initialState, action) => {
         }
 
         case CREATE: {
-            draft.orders.push(action.payload);
+            draft.orders.push(action.order);
             break;
         }
 

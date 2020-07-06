@@ -10,7 +10,7 @@ const SigninRoute = ({ children, ...rest }) => {
                 api.isAuthenticated ? (
                     <Redirect
                         to={{
-                            pathname: '/dashboard',
+                            pathname: '/order',
                             state: { from: location },
                         }}
                     />
