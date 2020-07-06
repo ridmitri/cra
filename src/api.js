@@ -23,7 +23,11 @@ const api = {
                     api.isAuthenticated = true;
                     localStorage.setItem('email', email);
                     localStorage.setItem('password', password);
-                    resolve();
+                    let orders = [];
+                    try {
+                        orders = JSON.parse(localStorage.getItem('orders'));
+                    } catch (e) {}
+                    resolve(orders);
                 } else {
                     reject('Wrong credentials.');
                 }

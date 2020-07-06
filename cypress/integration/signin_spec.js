@@ -17,6 +17,7 @@ describe('Signin page', () => {
         // Get an input, type into it and verify that the value has been updated
         cy.get('.action-email').type(Cypress.env('email'));
         cy.get('.action-password').type(Cypress.env('password') + '{enter}');
+        cy.wait(200);
         cy.window().then((window) => {
             expect(window.localStorage.getItem('email')).to.equal(
                 Cypress.env('email')
@@ -34,7 +35,7 @@ describe('Signin page', () => {
             .type(Cypress.env('password'))
             .should('have.value', `${Cypress.env('password')}`);
         cy.get('.action-submit').click();
-
+        cy.wait(200);
         cy.window().then((window) => {
             expect(window.localStorage.getItem('email')).to.equal(
                 Cypress.env('email')
@@ -60,16 +61,20 @@ describe('Signin page', () => {
     });
     it('Shows error message when credentials are incorrect', () => {
         cy.get('.action-email').type(Cypress.env('email'));
-        cy.get('.action-password').type('typo' + Cypress.env('password') + '{enter}');
+        cy.get('.action-password').type(
+            'typo' + Cypress.env('password') + '{enter}'
+        );
         cy.get('.error-message').should('be.visible');
         cy.window().then((window) => {
             expect(window.localStorage.getItem('email')).to.be.null;
             expect(window.localStorage.getItem('password')).to.be.null;
         });
     });
-    it.only('Removes error message when starts typing', () => {
+    it('Removes error message when starts typing', () => {
         cy.get('.action-email').type(Cypress.env('email'));
-        cy.get('.action-password').type('typo' + Cypress.env('password') + '{enter}');
+        cy.get('.action-password').type(
+            'typo' + Cypress.env('password') + '{enter}'
+        );
         cy.get('.error-message').should('be.visible');
         cy.get('.action-email').type('new email');
         cy.get('.error-message').should('not.exist');
