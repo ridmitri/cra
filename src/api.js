@@ -16,6 +16,26 @@ const USER = {
 
 const api = {
     isAuthenticated: false,
+    restoreSession() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const email = localStorage.getItem('email');
+                const password = localStorage.getItem('password');
+                if (email === USER.email && password === USER.password) {            
+                    api.isAuthenticated = true;
+                    localStorage.setItem('email', email);
+                    localStorage.setItem('password', password);
+                    let orders = [];
+                    try {
+                        orders = JSON.parse(localStorage.getItem('orders'));
+                    } catch (e) {}
+                    resolve(orders);
+                } else {
+                    reject();
+                }
+            }, 250); // fake async
+        });        
+    },
     authenticate({ email, password }) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -31,7 +51,7 @@ const api = {
                 } else {
                     reject('Wrong credentials.');
                 }
-            }, 100); // fake async
+            }, 250); // fake async
         });
     },
     signout(cb) {

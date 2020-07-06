@@ -1,8 +1,8 @@
-import React, { useReducer, createContext } from 'react';
 import produce from 'immer';
-import { UPDATE, CREATE, SIGNIN, SIGNOUT } from './constants';
+import { UPDATE, CREATE, SIGNIN, SIGNOUT, LOADED } from './constants';
 
 export const initialState = {
+	isLoaded: false,
     isAuthenticated: false,
     orders: [],
 };
@@ -27,6 +27,11 @@ export const reducer = produce((draft = initialState, action) => {
         case SIGNIN: {
             draft.isAuthenticated = true;
             draft.orders = action.orders || [];
+            break;
+        }
+
+        case LOADED: {
+            draft.isLoaded = true;
             break;
         }
 

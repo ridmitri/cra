@@ -1,16 +1,27 @@
-import { createContext, useContext } from 'react';
+import React, { createContext, useContext } from 'react';
 
-// helps to avoid boilerplate in integration testing
+// helps to avoid boilerplate in integration tests
 const emptyContext = {
   dispatch: () => {},
   state: {}
 }
 
-const StoreContext = createContext(emptyContext);
+export const StoreContext = createContext(emptyContext);
 
-export const useStore = () => {
+const useStore = () => {
     const {state, dispatch} = useContext(StoreContext);
     return {dispatch, getState: () => state};
 };
 
-export default StoreContext;
+
+export const MockState = (state) => children => {
+  const dispatch = () => {};
+  return (
+      <StoreContext.Provider value={{state, dispatch}}>
+          {children}
+      </StoreContext.Provider>
+  )
+}
+
+
+export default useStore;

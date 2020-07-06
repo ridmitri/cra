@@ -12,17 +12,11 @@ import {
     Alert,
 } from 'reactstrap';
 import api from 'api';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect,
-    useHistory,
-    useLocation,
-} from 'react-router-dom';
+import useStore from 'state/context';
+import { signin } from 'state/actions';
 
 const SigninForm = () => {
+    const { dispatch } = useStore();
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -34,10 +28,9 @@ const SigninForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setValues({ ...values });
         api.authenticate(values)
-            .then(() => {
-                // dispatch(signedIn())
+            .then((orders) => {
+                dispatch(signin(orders));
             })
             .catch((error) => {
                 setError(error);
@@ -89,6 +82,5 @@ const SigninForm = () => {
         </Card>
     );
 };
-
 
 export default SigninForm;

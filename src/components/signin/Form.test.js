@@ -10,7 +10,7 @@ jest.mock('api', () => ({
 
 describe('Signin Form ', () => {
     it('submits email and password', async () => {
-        const { getByPlaceholderText, getByText } = render(<Form />);
+        const { getByPlaceholderText } = render(<Form />);
 
         api.authenticate.mockImplementationOnce(() => Promise.resolve(true));
 

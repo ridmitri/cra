@@ -7,7 +7,7 @@ import { reducer, initialState } from 'state/reducer';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import StoreContext from 'state/context';
+import {StoreContext} from 'state/context';
 
 const App = () => {
     const [state, dispatch] = useReducer(reducer, initialState);

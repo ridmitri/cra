@@ -16,7 +16,9 @@ export default function Routing() {
                 <PrivateRoute path="/dashboard">
                     <Dashboard />
                 </PrivateRoute>
-                <PrivateRoute path="/dashboard/:id" children={<Order />} />
+                <PrivateRoute path="/order">
+                    <Order />
+                </PrivateRoute>
             </Switch>
         </Router>
     );

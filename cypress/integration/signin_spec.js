@@ -1,4 +1,4 @@
-describe('Signin page', () => {
+describe('Signin page: login', () => {
     beforeEach(() => {
         cy.visit('/');
     });
@@ -27,6 +27,7 @@ describe('Signin page', () => {
             );
         });
     });
+
     it('Signs in with correct credentials on click', () => {
         cy.get('.action-email')
             .type(Cypress.env('email'))
@@ -47,18 +48,22 @@ describe('Signin page', () => {
     });
 
     it('Redirects to /dashboard after signin', () => {
-        cy.login(Cypress.env('email'), Cypress.env('password'));
+        cy.get('.action-email')
+            .type(Cypress.env('email'))
+            .should('have.value', Cypress.env('email'));
+        cy.get('.action-password')
+            .type(Cypress.env('password'))
+            .should('have.value', `${Cypress.env('password')}`);
+        cy.get('.action-submit').click();
         cy.url().should('include', '/dashboard');
     });
 
-    it('Signs out on click to signout', () => {
+    it('logins on startup with stored locally credentials', () => {
         cy.login(Cypress.env('email'), Cypress.env('password'));
-        cy.get('.action-signout').click();
-        cy.window().then((window) => {
-            expect(window.localStorage.getItem('email')).to.be.null;
-            expect(window.localStorage.getItem('password')).to.be.null;
-        });
-    });
+        cy.url().should('include', '/dashboard');
+
+    })
+
     it('Shows error message when credentials are incorrect', () => {
         cy.get('.action-email').type(Cypress.env('email'));
         cy.get('.action-password').type(
@@ -69,14 +74,5 @@ describe('Signin page', () => {
             expect(window.localStorage.getItem('email')).to.be.null;
             expect(window.localStorage.getItem('password')).to.be.null;
         });
-    });
-    it('Removes error message when starts typing', () => {
-        cy.get('.action-email').type(Cypress.env('email'));
-        cy.get('.action-password').type(
-            'typo' + Cypress.env('password') + '{enter}'
-        );
-        cy.get('.error-message').should('be.visible');
-        cy.get('.action-email').type('new email');
-        cy.get('.error-message').should('not.exist');
     });
 });

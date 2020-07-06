@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import From from './Form';
-import {useStore} from 'state/context';
+import api from 'api';
+import useStore from 'state/context';
+import { signin, loadingDone } from 'state/actions';
 
 const SignIn = () => {
-    const {getState} = useStore();
+    const { getState, dispatch } = useStore();
+    const { isAuthenticated, isLoaded } = getState();
+
+    useEffect(() => {
+        api.restoreSession()
+            .then((orders) => {
+                dispatch(signin(orders));
+            })
+            .catch(() => {
+                dispatch(loadingDone());
+            });
+    }, [isLoaded]);
 
     return (
         <>
-            {getState().isAuthenticated ? (
+            {isAuthenticated ? (
                 <Redirect
                     to={{
                         pathname: '/dashboard',
@@ -20,10 +33,16 @@ const SignIn = () => {
                 <Container className="mt-4 ">
                     <Row className="align-items-center">
                         <Col className="col-md-4 col-sm-12 mx-auto">
-                            <h1 className="my-5 m-auto text-center mb-4">
-                                Sign in
-                            </h1>
-                            <From />
+                            {!isLoaded ? (
+                                <p>Loading...</p>
+                            ) : (
+                                <>
+                                    <h1 className="my-5 m-auto text-center mb-4">
+                                        Sign in
+                                    </h1>
+                                    <From />
+                                </>
+                            )}
                         </Col>
                     </Row>
                 </Container>
