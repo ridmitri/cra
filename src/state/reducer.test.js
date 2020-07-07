@@ -59,8 +59,8 @@ describe('Reducer', () => {
         const result = {
             isAuthenticated: false,
             isLoaded: true,
-            orders: []
-        }
+            orders: [],
+        };
 
         expect(reducer(state, action)).toEqual(result);
     });
