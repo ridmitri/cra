@@ -23,7 +23,7 @@ const App = () => {
             .catch(() => {
                 dispatch(loadingDone());
             });
-    }, [isLoaded]);
+    }, []);
 
     return (
         <StoreContext.Provider value={{ state, dispatch }}>
