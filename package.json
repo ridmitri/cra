@@ -15,6 +15,7 @@
         "react-router-dom": "^5.2.0",
         "react-scripts": "3.4.1",
         "reactstrap": "^8.5.1",
+        "run-all": "^1.0.1",
         "swr": "^0.2.3",
         "uuid": "^8.2.0"
     },
@@ -23,10 +24,12 @@
         "build": "react-scripts build",
         "test": "react-scripts test && cypress run --browser chrome",
         "jest": "react-scripts test",
-        "e2e": "cypress run",
         "eject": "react-scripts eject",
         "eslint": "eslint src --ext .js",
-        "cy": "cypress open"
+        "cy": "cypress open",
+        "cypress:ci": "react-scripts build && run-p --race start:ci cypress:run",
+        "cypress:run": "cypress run",
+        "start:ci": "http-server ./build -a localhost -p 3030 -c-1"        
     },
     "browserslist": {
         "production": [

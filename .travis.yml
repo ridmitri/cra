@@ -10,21 +10,20 @@ cache:
   yarn: true
   directories:
     - node_modules
+    - /home/travis/.cache/Cypress/4.9.0/Cypress/Cypress
 
 before_script:
   - yarn install --frozen-lockfile
-  - yarn global add serve
+  - yarn global add http-server
 
 jobs:
    include:
-     - stage: Static tests
-       script: yarn eslint
+    #  - stage: Static tests
+    #    script: yarn eslint
 
-     - stage: Unit Tests
-       script: yarn jest
+    #  - stage: Unit Tests
+    #    script: yarn jest
 
      - stage: End to End Tests
        script: 
-        - yarn build
-        - serve -s build -p 3030 &
-        - yarn e2e
+        - yarn cypress:ci
