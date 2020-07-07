@@ -3,6 +3,7 @@ import { UPDATE, CREATE, SIGNIN, SIGNOUT } from './constants';
 
 const initialState = {
     isAuthenticated: false,
+    isLoaded: false,
     orders: [],
 };
 
@@ -15,6 +16,7 @@ describe('Reducer', () => {
             expect(reducer(initialState, action)).toEqual({
                 ...initialState,
                 isAuthenticated: true,
+                isLoaded: true,
             });
         });
     });

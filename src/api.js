@@ -19,9 +19,9 @@ const call = (mode, ...args) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (mode === 'success') {
-                resolve(args);
+                resolve(...args);
             } else if (mode === 'failure') {
-                reject(args);
+                reject(...args);
             }
         }, 250);
     });

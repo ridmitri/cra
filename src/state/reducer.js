@@ -2,7 +2,7 @@ import produce from 'immer';
 import { UPDATE, CREATE, SIGNIN, SIGNOUT, LOADED } from './constants';
 
 export const initialState = {
-	isLoaded: false,
+    isLoaded: false,
     isAuthenticated: false,
     orders: [],
 };
@@ -20,13 +20,15 @@ export const reducer = produce((draft = initialState, action) => {
         }
 
         case CREATE: {
-            draft.orders.push(action.order);
+            draft.orders.unshift(action.order);
             break;
         }
 
         case SIGNIN: {
             draft.isAuthenticated = true;
+            draft.isLoaded = true;
             draft.orders = action.orders || [];
+            draft.orders = draft.orders.sort((a, b) => b.created - a.created);
             break;
         }
 

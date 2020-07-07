@@ -2,6 +2,7 @@ import { v4 as uuid } from 'uuid';
 import { UPDATE, CREATE, SIGNIN, SIGNOUT, LOADED } from './constants';
 
 export const signin = (orders = []) => {
+  console.log('s', orders)
   return {
     type: SIGNIN,
     orders,
