@@ -26,5 +26,5 @@ jobs:
      - stage: End to End Tests
        script: 
         - yarn build
-        - serve -s build
+        - serve -s build -p 3030 &
         - yarn e2e
