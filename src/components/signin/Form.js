@@ -1,19 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
-import {
-    Button,
-    Form,
-    FormGroup,
-    Input,
-    Card,
-    Alert,
-} from 'reactstrap';
+import { Button, Form, FormGroup, Input, Card, Alert } from 'reactstrap';
 import api from 'api';
 import useStore from 'state/context';
 import { signin } from 'state/actions';
 import { validateInputs } from 'components/forms/utils';
 import FormError from 'components/forms/FormError';
-
 
 const initialValidationErrors = {
     email: '',
@@ -61,7 +53,6 @@ const SigninForm = () => {
                 [name]: '',
             };
         });
-
     };
 
     return (

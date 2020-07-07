@@ -1,5 +1,4 @@
 import React from 'react';
-import api from 'api';
 import { Route, Redirect } from 'react-router-dom';
 import Signout from './Signout';
 import useStore from 'state/context';

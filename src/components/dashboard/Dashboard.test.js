@@ -29,7 +29,9 @@ const initialState = {
 };
 
 test('renders learn react link', () => {
-    const { getByText } = render(withRouter(withState(initialState)(<Dashboard />)));
+    const { getByText } = render(
+        withRouter(withState(initialState)(<Dashboard />))
+    );
     const header = getByText(/Dashboard/i);
     expect(header).toBeInTheDocument();
 });

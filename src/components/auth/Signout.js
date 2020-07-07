@@ -3,7 +3,7 @@ import api from 'api';
 import useStore from 'state/context';
 import { signout } from 'state/actions';
 
-import { Button, Container, Col, Row} from 'reactstrap';
+import { Button, Container, Col, Row } from 'reactstrap';
 
 export default function Signout() {
     const { dispatch } = useStore();

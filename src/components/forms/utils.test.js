@@ -35,8 +35,6 @@ describe('validateInputs', () => {
         const result = {
             ingredients: 'Required',
         };
-        expect(validateInputs(values, 'Required')).toEqual(
-            result
-        );
+        expect(validateInputs(values, 'Required')).toEqual(result);
     });
 });
