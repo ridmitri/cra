@@ -2,34 +2,45 @@ import { v4 as uuid } from 'uuid';
 import { UPDATE, CREATE, SIGNIN, SIGNOUT, LOADED } from './constants';
 
 export const signin = (orders = []) => {
-  return {
-    type: SIGNIN,
-    orders,
-  }
+    return {
+        type: SIGNIN,
+        orders,
+    };
 };
 
 export const signout = () => {
-  return {
-    type: SIGNOUT,
-  }
+    return {
+        type: SIGNOUT,
+    };
 };
 
-export const update = (order) => {
-  return {
-    type: UPDATE,
-    order,
-  }
+export const update = (id, status) => {
+    return {
+        type: UPDATE,
+        id,
+        status,
+    };
 };
 
-export const createOrder = (order) => {
-  return {
-    type: CREATE,
+export const createOrder = (
     order,
-  }
+    id = uuid(),
+    created = Date.now(),
+    status = 'waiting'
+) => {
+    return {
+        type: CREATE,
+        order: {
+            ...order,
+            id,
+            created,
+            status,
+        },
+    };
 };
 
 export const loadingDone = () => {
-  return {
-    type: LOADED,
-  }
+    return {
+        type: LOADED,
+    };
 };

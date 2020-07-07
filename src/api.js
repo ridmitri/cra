@@ -1,15 +1,3 @@
-import React from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    Redirect,
-    useHistory,
-    useLocation,
-} from 'react-router-dom';
-import { v4 as uuid } from 'uuid';
-
 const USER = {
     email: 'admin@mailinator.com',
     password: '123456',
@@ -41,13 +29,20 @@ const readOrders = () => {
 
 const api = {
     isAuthenticated: false,
+    updateStatus: (id, status) => {
+        const orders = readOrders();
+        const update = orders.map((order) => {
+            if (order.id === id) {
+                order.status = status;
+            }
+            return order;
+        });
+        localStorage.setItem('orders', JSON.stringify(update));
+        return success(true);
+    },
     order: (order) => {
         const orders = readOrders();
-        orders.push({
-            ...order,
-            id: uuid(),
-            created: Date.now(),
-        });
+        orders.push(order);
         localStorage.setItem('orders', JSON.stringify(orders));
         return success(true);
     },

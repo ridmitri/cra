@@ -12,8 +12,8 @@ describe('Signin page: Loading', () => {
         });
     });
 
-    it('Redirects to / signout', () => {
+    it('Redirects to / after signout', () => {
         cy.get('.action-signout').click();
-        cy.url().should('include', '/dashboard');
+        cy.url().should('include', '/');
     });
 });

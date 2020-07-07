@@ -3,7 +3,7 @@ import { render, screen, wait } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Form from './Form';
 import api from 'api';
-import { withState } from 'setupTests';
+import { withState, withRouter } from 'setupTests';
 
 jest.mock('api', () => ({
     order: jest.fn(),
@@ -12,7 +12,7 @@ jest.mock('api', () => ({
 describe('Order page', () => {
     beforeEach(() => jest.clearAllMocks());
     it('should submit pizza', async () => {
-        render(withState()(<Form />));
+        render(withRouter(withState()(<Form />)));
 
         api.order.mockImplementationOnce(() => Promise.resolve(true));
 
@@ -28,7 +28,7 @@ describe('Order page', () => {
     });
 
     it('should render error message when field is empty', async () => {
-        render(withState()(<Form />));
+        render(withRouter(withState()(<Form />)));
 
         api.order.mockImplementationOnce(() => Promise.resolve(true));
 

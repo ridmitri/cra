@@ -7,14 +7,17 @@ export const initialState = {
     orders: [],
 };
 
+
+
 export const reducer = produce((draft = initialState, action) => {
     switch (action.type) {
         case UPDATE: {
+            console.log(action)
             const index = draft.orders.findIndex(
                 (order) => action.id === order.id
             );
             if (index !== -1) {
-                draft.orders[index].status = action.status;
+                draft.orders[index].status = action.status
             }
             break;
         }

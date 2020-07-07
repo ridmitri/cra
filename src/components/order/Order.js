@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import Form from './Form';
 import { Link } from 'react-router-dom';
 
-export default React.memo(function Dashboard() {
+export default function Order() {
     return (
         <Container className="mt-4 ">
             <Row className="align-items-center">
@@ -15,4 +15,4 @@ export default React.memo(function Dashboard() {
             </Row>
         </Container>
     );
-});
+}

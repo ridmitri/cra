@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button, Form, FormGroup, Input, Card, Alert, Label } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
 import api from 'api';
 import useStore from 'state/context';
 import { createOrder } from 'state/actions';
@@ -32,6 +33,7 @@ const OrderForm = () => {
     const [validationErrors, setValidationErrors] = useState(
         initialValidationErrors
     );
+    const [submitted, setSubmitted] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -45,8 +47,7 @@ const OrderForm = () => {
         api.order(values)
             .then(() => {
                 dispatch(createOrder(values));
-                setValues(initialValues);
-                setChecked(initialChecked);
+                setSubmitted(true);
             })
             .catch((error) => {
                 setError(error);
@@ -81,7 +82,15 @@ const OrderForm = () => {
         });
     };
 
-    return (
+    return submitted ? (
+        <Redirect
+            to={{
+                pathname: '/dashboard',
+                state: { from: '/order' },
+            }}
+        />
+    ) : (
+        // <p>hey</p>
         <Card body className="mt-4">
             <Form onSubmit={handleSubmit}>
                 {error && (
@@ -109,6 +118,7 @@ const OrderForm = () => {
                                 type="checkbox"
                                 onChange={handleCheckbox('Cheese')}
                                 checked={checked['Cheese']}
+                                name="cheese"
                             />{' '}
                             Cheese
                         </Label>
@@ -119,6 +129,7 @@ const OrderForm = () => {
                                 type="checkbox"
                                 onChange={handleCheckbox('Bacon')}
                                 checked={checked['Bacon']}
+                                name="bacon"
                             />{' '}
                             Bacon
                         </Label>
@@ -129,6 +140,7 @@ const OrderForm = () => {
                                 type="checkbox"
                                 onChange={handleCheckbox('Mushrooms')}
                                 checked={checked['Mushrooms']}
+                                name="mushrooms"
                             />{' '}
                             Mushrooms
                         </Label>
@@ -139,6 +151,7 @@ const OrderForm = () => {
                                 type="checkbox"
                                 onChange={handleCheckbox('Ananas')}
                                 checked={checked['Ananas']}
+                                name="ananas"
                             />{' '}
                             Anannas
                         </Label>

@@ -3,7 +3,7 @@ import api from 'api';
 import useStore from 'state/context';
 import { signout } from 'state/actions';
 
-import { Button, Container, Col, Row } from 'reactstrap';
+import { Button, Container, Col, Row} from 'reactstrap';
 
 export default function Signout() {
     const { dispatch } = useStore();
@@ -19,9 +19,9 @@ export default function Signout() {
             <Row className="align-items-center">
                 <Col className="col-md-4 col-sm-12 mx-auto">
                     <Button
-                        color="primary"
                         onClick={handleSignout}
-                        className=" ml-auto px-4 py-2 action-submit"
+                        color="link"
+                        className=" ml-auto px-4 py-2 action-signout"
                     >
                         Signout
                     </Button>
