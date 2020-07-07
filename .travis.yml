@@ -1,6 +1,11 @@
 language: node_js
 node_js:
   14
+addons:
+  apt:
+    packages:
+      # Ubuntu 16+ does not install this dependency by default, so we need to install it ourselves
+      - libgconf-2-4  
 cache:
   yarn: true
   directories:
@@ -8,6 +13,18 @@ cache:
 
 before_script:
   - yarn install --frozen-lockfile
-script:
-  - npm test
-  - npm eslint
+  - yarn global add serve
+
+jobs:
+   include:
+     - stage: Static tests
+       script: yarn eslint
+
+     - stage: Unit Tests
+       script: yarn jest
+
+     - stage: End to End Tests
+       script: 
+        - yarn build
+        - serve -s build
+        - yarn e2e
