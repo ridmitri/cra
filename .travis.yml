@@ -14,15 +14,14 @@ cache:
 
 before_script:
   - yarn install --frozen-lockfile
-  - yarn global add http-server
 
 jobs:
    include:
-    #  - stage: Static tests
-    #    script: yarn eslint
+     - stage: Static tests
+       script: yarn eslint
 
-    #  - stage: Unit Tests
-    #    script: yarn jest
+     - stage: Unit Tests
+       script: yarn jest
 
      - stage: End to End Tests
        script: 

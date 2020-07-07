@@ -35,6 +35,8 @@ const Dashboard = () => {
         });
     };
 
+    const { orders } = getState();
+
     return (
         <Container className="mt-4 ">
             <Row className="align-items-center">
@@ -50,31 +52,33 @@ const Dashboard = () => {
                             </Button>
                         </Link>
                     </p>
-                    <Table>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Ingredients</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {getState().orders.map((order, idx) => {
-                                return (
-                                    <OrderItem
-                                        {...order}
-                                        index={idx + 1}
-                                        key={order.id || uuid()}
-                                        onClick={handleStatusUpdate(
-                                            order.id,
-                                            order.status
-                                        )}
-                                    />
-                                );
-                            })}
-                        </tbody>
-                    </Table>
+                    {orders && (
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Ingredients</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {orders.map((order, idx) => {
+                                    return (
+                                        <OrderItem
+                                            {...order}
+                                            index={idx + 1}
+                                            key={order.id || uuid()}
+                                            onClick={handleStatusUpdate(
+                                                order.id,
+                                                order.status
+                                            )}
+                                        />
+                                    );
+                                })}
+                            </tbody>
+                        </Table>
+                    )}
                 </Col>
             </Row>
         </Container>

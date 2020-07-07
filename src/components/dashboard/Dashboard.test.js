@@ -28,7 +28,7 @@ const initialState = {
     ],
 };
 
-test('renders learn react link', () => {
+test('renders Dashboard', () => {
     const { getByText } = render(
         withRouter(withState(initialState)(<Dashboard />))
     );
