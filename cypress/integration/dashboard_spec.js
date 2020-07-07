@@ -5,7 +5,6 @@ describe('Dashboard page', () => {
     });
 
     it('Visits Dashboard', () => {
-        cy.visit('/dashboard');
         cy.url().should('include', '/dashboard');
     });
 

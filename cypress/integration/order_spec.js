@@ -1,9 +1,10 @@
 describe('Order page', () => {
     beforeEach(() => {
+        cy.visit('/');
         cy.login(Cypress.env('email'), Cypress.env('password'));
         cy.visit('/order');
     });
-
+    
     it('Visits Order', () => {
         cy.url().should('include', '/order');
     });

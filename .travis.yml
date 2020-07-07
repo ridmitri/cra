@@ -4,13 +4,13 @@ node_js:
 addons:
   apt:
     packages:
-      # Ubuntu 16+ does not install this dependency by default, so we need to install it ourselves
+      # Ubuntu 16+ does not install this dependency by default, so we need to install it ourselves for Cypress
       - libgconf-2-4  
 cache:
   yarn: true
   directories:
     - node_modules
-    - /home/travis/.cache/Cypress/4.9.0/Cypress/Cypress
+    - ~/.cache
 
 before_script:
   - yarn install --frozen-lockfile
