@@ -31,7 +31,7 @@
         "cypress:ci": "react-scripts build && npx run-p --race start:ci cypress:run",
         "cypress:server": "npx run-p --race start:ci cypress:run",
         "cypress:run": "cypress run",
-        "start:ci": "node server"
+        "start:ci": "node server.js"
     },
     "browserslist": {
         "production": [
@@ -58,6 +58,7 @@
         "eslint-plugin-prettier": "^3.1.4",
         "eslint-plugin-react": "7.x",
         "eslint-plugin-react-hooks": "2.x",
-        "prettier": "^2.0.5"
+        "prettier": "^2.0.5",
+        "start-server-and-test": "^1.11.0"
     }
 }

@@ -8,10 +8,9 @@ app.use(express.static(__dirname + '/build'));
 
 // handle every other route with index.html, which will contain
 // a script tag to your application's JavaScript file(s).
-app.get('*', function (request, response) {
-  console.log(request.url)
-  response.sendFile(path.resolve(__dirname, 'build/index.html'));
+app.use(function (req, res, next) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(port);
-console.log("server started on port " + port);
+console.log('server started on port ' + port);

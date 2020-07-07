@@ -1,7 +1,7 @@
 describe('Signin page: Loading', () => {
     beforeEach(() => {
-        cy.visit('/');
         cy.login(Cypress.env('email'), Cypress.env('password'));
+        cy.visit('/');
     });
 
     it('Signs out on click to signout', () => {

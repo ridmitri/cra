@@ -60,6 +60,7 @@ describe('Signin page: login', () => {
 
     it('logins on startup with stored locally credentials', () => {
         cy.login(Cypress.env('email'), Cypress.env('password'));
+        cy.visit('/');
         cy.url().should('include', '/dashboard');
 
     })
